@@ -7,7 +7,9 @@
 
   --background: #F1F6F9;
 
+  --white: #FFF;
+
   --corner-radius-tiny: 2px;
   --corner-radius-small: 8px;
-  --corner-radius-big: 19px;
+  --corner-radius-large: 19px;
 }
