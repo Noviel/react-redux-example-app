@@ -3,9 +3,7 @@ import * as React from 'react';
 import { hot } from 'react-hot-loader';
 import styles from './App.module.css';
 
-import { Button } from './Button';
-import { Form } from './Form';
-import { Input } from './Input';
+import { AppInput } from './AppInput';
 
 export interface IAppProps {
   name: string;
@@ -20,11 +18,8 @@ export class App extends React.Component<IAppProps, IAppState> {
   public render() {
     return (
       <div className={styles.app}>
-        <Form onSubmit={e => console.log(e)}>
-          <Input placeholder="example@mail.com" name="email" label="Email" />
-          <Input placeholder="Alexander Snov" name="name" label="Name" />
-          <Button name="add-email">Add email</Button>
-        </Form>
+        <h1>Add recipient</h1>
+        <AppInput onSubmit={e => console.log('ORDER FROM THE ROOT TUTUT', e)} />
       </div>
     );
   }
