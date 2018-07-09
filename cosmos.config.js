@@ -4,7 +4,7 @@ module.exports = {
 
   // Additional entry points that should be present along with any component
   // Sad, but inevitable
-  // globalImports: ['./src/variables.css'],
+  globalImports: ['./src/global.css'],
 
   // Customize pattern(s) for matching fixture files
   fileMatch: ['**/fixtures/**/*.ts'],

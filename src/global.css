@@ -1,0 +1,11 @@
+@import "./variables.css";
+
+body, * {
+  box-sizing: border-box;
+  font-family: 'Open Sans';
+}
+
+h1 {
+  color: var(--text);
+  font-size: 48px;
+}
