@@ -12,4 +12,8 @@
   --corner-radius-tiny: 2px;
   --corner-radius-small: 8px;
   --corner-radius-large: 19px;
+
+  --input-text-indent: 17px;
+
+  --animation-rate: 0.15s;
 }

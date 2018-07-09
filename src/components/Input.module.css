@@ -13,6 +13,8 @@
   width: 214px;
   border-radius: var(--corner-radius-small);
 
+  background-color: var(--white);
+
   text-indent: var(--input-text-indent, 5px);
 }
 
