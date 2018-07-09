@@ -3,6 +3,7 @@ import * as React from 'react';
 import { hot } from 'react-hot-loader';
 import styles from './App.module.css';
 
+import { Button } from './Button';
 import { Form } from './Form';
 import { Input } from './Input';
 
@@ -22,8 +23,7 @@ export class App extends React.Component<IAppProps, IAppState> {
         <Form onSubmit={e => console.log(e)}>
           <Input placeholder="example@mail.com" name="email" label="Email" />
           <Input placeholder="Alexander Snov" name="name" label="Name" />
-          {this.props.name}
-          <button type="submit">Add email</button>
+          <Button name="add-email">Add email</Button>
         </Form>
       </div>
     );
