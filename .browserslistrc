@@ -1,0 +1,10 @@
+[production staging]
+last 1 chrome version
+last 1 firefox version
+last 1 opera version
+last 2 safari versions
+last 2 edge versions
+
+[development]
+last 1 chrome version
+last 1 firefox version

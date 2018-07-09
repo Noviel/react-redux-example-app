@@ -1,0 +1,13 @@
+:root {
+  --text: #3A3E49;
+  --text-light: #8A9AAB;
+
+  --primary: #009AD6;
+  --primary-light: #E7F0F7;
+
+  --background: #F1F6F9;
+
+  --corner-radius-tiny: 2px;
+  --corner-radius-small: 8px;
+  --corner-radius-big: 19px;
+}

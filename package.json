@@ -1,0 +1,43 @@
+{
+  "name": "typescript-boilerplate",
+  "version": "0.1.0",
+  "description": "Typescript boilerplate with Jest, TSLint and Prettier",
+  "author": "Alexander Snov <snov.contact@gmail.com>",
+  "license": "MIT",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "webpack-dev-server --port 4200 --hot --hot-only --inline --history-api-fallback=true",
+    "dev:components": "cosmos",
+    "build": "cross-env NODE_ENV=production webpack",
+    "lint": "tslint --project tsconfig.json",
+    "test": "jest",
+    "prepush": "lint-staged && yarn test",
+    "cosmos:export": "cosmos-export"
+  },
+  "devDependencies": {
+    "@types/jest": "^23.1.4",
+    "@types/react": "^16.4.6",
+    "@types/react-dom": "^16.0.6",
+    "cross-env": "^5.2.0",
+    "husky": "^0.14.3",
+    "jest": "^23.2.0",
+    "lint-staged": "^7.2.0",
+    "prettier": "^1.13.7",
+    "react-cosmos": "^4.3.0",
+    "ts-jest": "^23.0.0",
+    "tslint": "^5.10.0",
+    "tslint-config-prettier": "^1.13.0",
+    "typescript": "^2.9.2",
+    "webpack": "^4.14.0",
+    "webpack-cli": "^3.0.8",
+    "webpack-dev-server": "^3.1.4",
+    "webpack-features": "^3.24.0"
+  },
+  "dependencies": {
+    "final-form": "^4.8.3",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0"
+  }
+}
