@@ -8,9 +8,10 @@
     "dev": "webpack-dev-server --port 4200 --hot --hot-only --inline --history-api-fallback=true",
     "dev:components": "cosmos",
     "build": "cross-env NODE_ENV=production webpack",
-    "lint": "tslint --project tsconfig.json",
+    "lint": "tslint --project tsconfig.json && yarn stylelint",
+    "stylelint": "stylelint \"src/**/*.css\"",
     "test": "jest",
-    "prepush": "lint-staged && yarn test",
+    "prepush": "lint-staged && yarn lint && yarn test",
     "cosmos:export": "cosmos-export"
   },
   "devDependencies": {
@@ -23,6 +24,8 @@
     "lint-staged": "^7.2.0",
     "prettier": "^1.13.7",
     "react-cosmos": "^4.3.0",
+    "stylelint": "^9.3.0",
+    "stylelint-a11y": "^1.1.5",
     "ts-jest": "^23.0.0",
     "tslint": "^5.10.0",
     "tslint-config-prettier": "^1.13.0",
