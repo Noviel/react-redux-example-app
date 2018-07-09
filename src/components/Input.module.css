@@ -1,5 +1,21 @@
 @import "../variables.css";
 
 .label {
-  color: var(--text)
+  display:block;
+  position:relative;
+  padding-left: 0px;
+
+  color: var(--text);
+}
+
+.input {
+  height: 41px;
+  width: 214px;
+  border-radius: var(--corner-radius-small);
+
+  text-indent: var(--input-text-indent, 5px);
+}
+
+.input::placeholder {
+  text-indent: var(--input-text-indent, 5px);
 }

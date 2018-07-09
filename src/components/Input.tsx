@@ -13,6 +13,6 @@ export const Input = ({ placeholder, name, label }: IInputProps) => (
     <label className={styles.label} htmlFor={name}>
       {label}
     </label>
-    <input name={name} placeholder={placeholder} />
+    <input className={styles.input} name={name} placeholder={placeholder} />
   </>
 );
