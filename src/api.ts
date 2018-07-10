@@ -1,6 +1,10 @@
+import axios from 'axios';
+
 const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
 
-const defaultData = [
+const endpointBase = 'https://5b3b45c9e7659e00149694a4.mockapi.io/api/db';
+
+const mockData = [
   {
     status: false,
     email: 'email 1',
@@ -27,28 +31,30 @@ const defaultData = [
   },
 ];
 
-export const getData = async (query: string) => {
-  await delay(500);
+export const getData = (query: string) =>
+  axios.get(`${endpointBase}/users`).then(res => res.data);
 
-  return defaultData;
-};
+export const sendToUser = (id: any) =>
+  axios
+    .put(`${endpointBase}/users/${id}`, { status: true })
+    .then(res => ({ target: res.data.id }));
 
-export const sendToUser = async (to: any) => {
-  console.log('Sending to ', to);
+export const createUser = (data: any) =>
+  axios.post(`${endpointBase}/users`, data).then(res => res.data);
 
-  await delay(200);
+export const deleteUsers = async (ids: any[]) => {
+  const result = await Promise.all(
+    ids.map(id => axios.delete(`${endpointBase}/users/${id}`))
+  );
 
-  return { target: to, done: true };
-};
+  const deletedIds = result.map(e => e.data.id);
 
-export const deleteUsers = async (users: any[]) => {
-  await delay(200);
-
-  return { done: true, users };
+  return { ids: deletedIds };
 };
 
 export const API = {
   fetch: getData,
   send: sendToUser,
   delete: deleteUsers,
+  create: createUser,
 };
