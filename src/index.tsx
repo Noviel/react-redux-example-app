@@ -14,9 +14,9 @@ import { store } from './store/store';
 
 store.dispatch(fetchUsers(''));
 
-store.subscribe(() => {
-  console.log(store.getState());
-});
+// store.subscribe(() => {
+//   console.log(store.getState());
+// });
 
 import './global.css';
 
