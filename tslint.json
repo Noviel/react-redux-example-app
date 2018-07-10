@@ -4,6 +4,8 @@
     "tslint-config-prettier"
   ],
   "rules": {
+    "no-submodule-imports": false,
+    "object-literal-sort-keys": false,
     "no-console": { "severity": "warn" }
   }
 }
