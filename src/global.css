@@ -1,12 +1,14 @@
 @import "./variables.css";
 
 body, * {
+  font-size: 14px;
   box-sizing: border-box;
-  font-family: 'Open Sans';
+  font-family: "Open Sans", Times, serif;
   background-color: var(--background);
 }
 
 h1 {
   color: var(--text);
-  font-size: 48px;
+  font-size: 22px;
+  font-family: "Open Sans";
 }

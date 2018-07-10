@@ -1,6 +1,8 @@
 @import "../variables.css";
 
 .label {
+  font: "Open Sans";
+  font-size: 1.2em;
   display:block;
   position:relative;
   padding-left: 0px;
