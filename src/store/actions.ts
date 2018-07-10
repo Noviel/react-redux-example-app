@@ -41,6 +41,38 @@ export const send: any = (to: any) => async (
   }
 };
 
+export const deleteUsers: any = (ids: string[]) => async (
+  dispatch: Dispatch<IState>
+): Promise<Action> => {
+  try {
+    const result = await API.delete(ids);
+    return dispatch({
+      type: actions.DELETE_SUCCESS,
+      payload: {
+        ids,
+      },
+    });
+  } catch (error) {
+    return dispatch({ type: actions.DELETE_FAILED, payload: { error } });
+  }
+};
+
+export const createUser: any = (data: any) => async (
+  dispatch: Dispatch<IState>
+): Promise<Action> => {
+  try {
+    const result = await API.create(data);
+    return dispatch({
+      type: actions.CREATE_USER_SUCCESS,
+      payload: {
+        result,
+      },
+    });
+  } catch (error) {
+    return dispatch({ type: actions.CREATE_USER_FAILED, payload: { error } });
+  }
+};
+
 export const toggleSelected: any = (id: string) => ({
   type: actions.TOGGLE_SELECTED,
   payload: {
@@ -54,20 +86,3 @@ export const setFilter: any = (filter: string) => ({
     filter,
   },
 });
-
-export const deleteUsers: any = (ids: string[]) => async (
-  dispatch: Dispatch<IState>
-): Promise<Action> => {
-  try {
-    console.log('GOING TO DELETE', ids);
-    const result = await API.delete(ids);
-    return dispatch({
-      type: actions.DELETE_SUCCESS,
-      payload: {
-        ids: result.users,
-      },
-    });
-  } catch (error) {
-    return dispatch({ type: actions.DELETE_FAILED, payload: { error } });
-  }
-};

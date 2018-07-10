@@ -88,6 +88,13 @@ export const reducer = (state: any = initialState, action: any) => {
         list: state.list.filter((e: any) => !ids.includes(e)),
       };
 
+    case actions.CREATE_USER_SUCCESS:
+      return {
+        ...state,
+        byId: { ...state.byId, [payload.result.id]: payload.result },
+        list: state.list.concat(payload.result.id),
+      };
+
     default:
       return state;
   }
