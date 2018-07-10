@@ -9,9 +9,8 @@ export const removeItem = <T>(array: T[], index: number) => [
   ...array.slice(index + 1),
 ];
 
-export const arrayToObject = (arr: any[], idField = 'id') => {
-  return arr.reduce((acc, curr) => {
+export const arrayToObject = (arr: any[], idField = 'id') =>
+  arr.reduce((acc, curr) => {
     acc[curr[idField]] = curr;
     return acc;
   }, {});
-};
