@@ -3,13 +3,13 @@ import React from 'react';
 import styles from './Button.module.css';
 
 export interface IButtonsProps {
-  name: string;
   children?: any;
+  onClick?: (e: React.MouseEvent<HTMLElement>) => void;
 }
 
-export const Button = ({ name, children }: IButtonsProps) => (
+export const Button = ({ children, onClick }: IButtonsProps) => (
   <>
-    <button className={styles.button} type="submit">
+    <button className={styles.button} type="submit" onClick={onClick}>
       {children}
     </button>
   </>

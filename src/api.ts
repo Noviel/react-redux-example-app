@@ -8,7 +8,13 @@ const defaultData = [
     id: '1',
   },
   {
-    status: false,
+    status: true,
+    email: 'email 2',
+    name: 'name 2',
+    id: '2',
+  },
+  {
+    status: true,
     email: 'email 3',
     name: 'name 3',
     id: '3',
@@ -27,6 +33,22 @@ export const getData = async (query: string) => {
   return defaultData;
 };
 
-export const sendEmails = (to: [string]) => {
+export const sendToUser = async (to: any) => {
   console.log('Sending to ', to);
+
+  await delay(200);
+
+  return { target: to, done: true };
+};
+
+export const deleteUsers = async (users: any[]) => {
+  await delay(200);
+
+  return { done: true, users };
+};
+
+export const API = {
+  fetch: getData,
+  send: sendToUser,
+  delete: deleteUsers,
 };

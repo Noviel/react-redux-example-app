@@ -3,11 +3,14 @@ import { render } from 'react-dom';
 
 import { App } from './components/App';
 
-import { fetchUsers } from './store/actions';
+import { fetchUsers, setFilter } from './store/actions';
 import { store } from './store/store';
 
-(window as any).store = store;
-(window as any).fetchUsers = fetchUsers;
+(window as any)._ = {
+  store,
+  fetchUsers,
+  setFilter
+}
 
 store.dispatch(fetchUsers(''));
 

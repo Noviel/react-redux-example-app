@@ -13,7 +13,7 @@ export const AppInput: React.SFC<IAppProps> = props => {
     <Form onSubmit={props.onSubmit}>
       <Input placeholder="example@mail.com" name="email" label="Email" />
       <Input placeholder="Alexander Snov" name="name" label="Name" />
-      <Button name="add-email">Add email</Button>
+      <Button>Add email</Button>
     </Form>
   );
 };
