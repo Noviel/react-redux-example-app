@@ -5,9 +5,9 @@ import { Dispatch } from 'redux';
 
 import 'react-table/react-table.css';
 
-import { toggleSelected } from '../store/actions';
+import { send, toggleSelected } from '../store/actions';
 import { checkedSelector } from '../store/checked';
-import { filterSelector, usersSelector } from '../store/users';
+import { usersByIdSelector, visibleUsers } from '../store/users';
 
 import { Button } from './Button';
 import { Checkbox } from './Checkbox';
@@ -15,7 +15,9 @@ import { Checkbox } from './Checkbox';
 export interface ITableProps {
   id?: string;
   users?: any;
+  shown?: any;
   toggle?: any;
+  send?: any;
   checked: string[];
 }
 
@@ -47,24 +49,26 @@ export class UCTable extends React.Component<ITableProps, ITableState> {
       },
       {
         Header: 'Status',
-        accessor: 'status',
+        id: 'status',
+        accessor: (d: any) => (d.status ? 'Sent' : 'Unsent'),
       },
       {
-        Cell: (row: any) => (
-          <Button name="send" onClick={e => console.log(e, row)}>
-            Send
-          </Button>
-        ),
+        Cell: (row: any) =>
+          !row.original.status ? (
+            <Button onClick={e => this.props.send(row.original.id)}>
+              Send
+            </Button>
+          ) : (
+            <span />
+          ),
         Header: 'Action',
         accessor: undefined,
       },
     ];
 
-    // tslint:disable-next-line
-    console.log('render with', this.props);
     return (
       <ReactTable
-        data={this.props.users}
+        data={this.props.shown}
         columns={columns}
         showPagination={false}
       />
@@ -73,13 +77,14 @@ export class UCTable extends React.Component<ITableProps, ITableState> {
 }
 
 const mapStateToProps = (state: any) => ({
-  users: usersSelector(state),
-  filter: filterSelector(state),
+  users: usersByIdSelector(state),
   checked: checkedSelector(state),
+  shown: visibleUsers(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   toggle: (id: string) => dispatch(toggleSelected(id)),
+  send: (id: string) => dispatch(send(id)),
 });
 
 export const Table = connect(

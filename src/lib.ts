@@ -14,3 +14,16 @@ export const arrayToObject = (arr: any[], idField = 'id') =>
     acc[curr[idField]] = curr;
     return acc;
   }, {});
+
+export const deleteKeys = (obj: any, keys: string[]) => {
+  const result: any = {};
+
+  for (const key in obj) {
+    if (keys.includes(key) && obj.hasOwnProperty(key)) {
+      continue;
+    }
+    result[key] = obj[key];
+  }
+
+  return result;
+};

@@ -6,6 +6,8 @@ import { Provider } from 'react-redux';
 import styles from './App.module.css';
 
 import { AppInput } from './AppInput';
+import { DeleteButton } from './DeleteButton';
+import { Filter } from './Filter';
 import { Table } from './Table';
 
 export interface IAppProps {
@@ -23,9 +25,9 @@ export class App extends React.Component<IAppProps, IAppState> {
       <Provider store={this.props.store}>
         <div className={styles.app}>
           <h1>Add recipient</h1>
-          <AppInput
-            onSubmit={e => console.log('ORDER FROM THE ROOT TUTUT', e)}
-          />
+          <AppInput onSubmit={e => console.log('Submitting the form', e)} />
+          <DeleteButton>DELTEE</DeleteButton>
+          <Filter />
           <Table />
         </div>
       </Provider>

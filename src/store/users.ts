@@ -1,7 +1,9 @@
 import { createSelector } from 'reselect';
 
-
 import * as actions from './action-constants';
+import { filterSelector } from './filter';
+
+import { arrayToObject, deleteKeys } from '../lib';
 
 /*
 store.state = {
@@ -22,62 +24,70 @@ store.state = {
 
 Filtered todo are derived from the state via selectors.
 
-setFilter('all');
-
 */
-
-export const usersSelector = (state: any) => state.users.list;
-export const filterSelector = (state: any) => state.filter;
-
-// const isUserChecked = (id: string) => (state: any) => {
-
-// }
-
-export const visibleUsers = createSelector(
-  usersSelector,
-  filterSelector,
-  (users, filter) => {
-    if (filter === 'all') {
-      return users;
-    }
-
-    return Object.keys(users).reduce((acc: any, curr) => {
-      if (filter === 'sent' && users[curr].status) {
-        acc[curr] = users[curr];
-      } else if (filter === 'unsent' && !users[curr].status) {
-        acc[curr] = users[curr];
-      }
-    }, {});
-  }
-);
 
 const initialState = {
   list: [],
+  byId: {},
   lastAction: 'init',
 };
+
+export const usersByIdSelector = (state: any) => state.users.byId;
+export const usersListSelector = (state: any) => state.users.list;
+
+export const visibleUsers = createSelector(
+  usersByIdSelector,
+  usersListSelector,
+  filterSelector,
+  (usersById, usersList, filter) => {
+    if (filter === 'all') {
+      return usersList.map((id: number) => usersById[id]);
+    }
+
+    return usersList.reduce((acc: any, curr: any) => {
+      const user = usersById[curr];
+      if (
+        (filter === 'sent' && user.status) ||
+        (filter === 'unsent' && !user.status)
+      ) {
+        acc.push(user);
+      }
+      return acc;
+    }, []);
+  }
+);
 
 export const reducer = (state: any = initialState, action: any) => {
   const { type, payload } = action;
 
   switch (type) {
     case actions.FETCH_USERS:
-      console.log('fetching...');
       return { ...state, lastAction: 'fetching' };
     case actions.FETCH_USERS_FAILED:
-      console.log('fetching failed...');
       return { ...state, lastAction: 'fetching failed' };
     case actions.FETCH_USERS_SUCCESS:
-      console.log('fetching success...');
       return {
         ...state,
-        list: payload.users,
+        byId: arrayToObject(payload.users),
+        list: payload.users.map((u: any) => u.id),
         lastAction: 'fetching success',
       };
-    case actions.SEND:
-      return state;
-    case actions.TOGGLE_SELECTED:
-      console.log('toggling in user', payload);
-      return state;
+
+    case actions.SEND_SUCCESS:
+      const id = payload.result.target;
+      return {
+        ...state,
+        byId: { ...state.byId, [id]: { ...state.byId[id], status: true } },
+      };
+
+    case actions.DELETE_SUCCESS:
+      const { ids } = payload;
+      return {
+        ...state,
+        byId: deleteKeys(state.byId, ids),
+        list: state.list.filter((e: any) => !ids.includes(e)),
+      };
+
     default:
       return state;
   }
