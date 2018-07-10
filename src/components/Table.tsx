@@ -82,10 +82,10 @@ const mapStateToProps = (state: any) => ({
   shown: visibleUsers(state),
 });
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  toggle: (id: string) => dispatch(toggleSelected(id)),
-  send: (id: string) => dispatch(send(id)),
-});
+const mapDispatchToProps = {
+  toggle: toggleSelected,
+  send,
+};
 
 export const Table = connect(
   mapStateToProps,
