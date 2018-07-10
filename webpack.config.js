@@ -4,18 +4,13 @@ const { react } = require('webpack-features');
 
 const rootPath = realpathSync(process.cwd());
 
-const production = process.env.NODE_ENV === 'production';
-
 module.exports = react(
   {
-    production,
+    browser: true,
     babelrc: false,
     babelPolyfill: 'usage',
     types: 'typescript',
-    hot: !production,
-
     entry: './src/index.tsx',
-    indexHtml: production ? '../index.html' : 'index.html',
   },
   {
     javascript: {
@@ -23,9 +18,6 @@ module.exports = react(
       tsOptions: {
         configFile: resolve(rootPath, './tsconfig.json'),
       },
-    },
-    entry: {
-      hotMiddleware: !production,
     },
   }
 );
