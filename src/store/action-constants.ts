@@ -12,11 +12,9 @@ export const FETCH_USERS = 'FETCH_USERS';
 export const FETCH_USERS_SUCCESS = 'FETCH_USERS_SUCCESS';
 export const FETCH_USERS_FAILED = 'FETCH_USERS_FAILED';
 
-export const SET_USERS = 'SET_USERS';
-
-export const DELETE = 'DELETE';
-export const DELETE_SUCCESS = 'DELETE_SUCCESS';
-export const DELETE_FAILED= 'DELETE_FAILED';
+export const DELETE_USER = 'DELETE';
+export const DELETE_USER_SUCCESS = 'DELETE_SUCCESS';
+export const DELETE_USER_FAILED= 'DELETE_FAILED';
 
 export const SEND = 'SEND';
 export const SEND_SUCCESS = 'SEND_SUCCESS';

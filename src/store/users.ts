@@ -61,16 +61,33 @@ export const reducer = (state: any = initialState, action: any) => {
   const { type, payload } = action;
 
   switch (type) {
+    case actions.FETCH_USERS_FAILED:
+    case actions.CREATE_USER_FAILED:
+    case actions.DELETE_USER_FAILED:
+    case actions.SEND_FAILED:
+    case actions.ERROR:
+      console.warn(
+        payload.error.action,
+        'Probably remote endpoint is unavailable.'
+      );
+      return { ...state, error: payload.error };
+
     case actions.FETCH_USERS:
       return { ...state, lastAction: 'fetching' };
-    case actions.FETCH_USERS_FAILED:
-      return { ...state, lastAction: 'fetching failed' };
+
     case actions.FETCH_USERS_SUCCESS:
       return {
         ...state,
         byId: arrayToObject(payload.users),
         list: payload.users.map((u: any) => u.id),
         lastAction: 'fetching success',
+      };
+
+    case actions.CREATE_USER_SUCCESS:
+      return {
+        ...state,
+        byId: { ...state.byId, [payload.result.id]: payload.result },
+        list: state.list.concat(payload.result.id),
       };
 
     case actions.SEND_SUCCESS:
@@ -80,19 +97,12 @@ export const reducer = (state: any = initialState, action: any) => {
         byId: { ...state.byId, [id]: { ...state.byId[id], status: true } },
       };
 
-    case actions.DELETE_SUCCESS:
+    case actions.DELETE_USER_SUCCESS:
       const { ids } = payload;
       return {
         ...state,
         byId: deleteKeys(state.byId, ids),
         list: state.list.filter((e: any) => !ids.includes(e)),
-      };
-
-    case actions.CREATE_USER_SUCCESS:
-      return {
-        ...state,
-        byId: { ...state.byId, [payload.result.id]: payload.result },
-        list: state.list.concat(payload.result.id),
       };
 
     default:

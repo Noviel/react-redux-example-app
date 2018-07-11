@@ -7,6 +7,16 @@ import { API } from '../api';
 
 type IState = any;
 
+const createErrorAction = (error: any, actionType: any) => ({
+  type: actionType,
+  payload: {
+    error: {
+      data: error,
+      action: actionType,
+    },
+  },
+});
+
 export const fetchUsers: any = (query: string) => async (
   dispatch: Dispatch<IState>
 ): Promise<Action> => {
@@ -20,40 +30,8 @@ export const fetchUsers: any = (query: string) => async (
         users,
       },
     });
-  } catch (e) {
-    return dispatch({ type: 'SOME_ERROR' });
-  }
-};
-
-export const send: any = (to: any) => async (
-  dispatch: Dispatch<IState>
-): Promise<Action> => {
-  try {
-    const result = await API.send(to);
-    return dispatch({
-      type: actions.SEND_SUCCESS,
-      payload: {
-        result,
-      },
-    });
-  } catch (e) {
-    return dispatch({ type: 'SOME_ERROR' });
-  }
-};
-
-export const deleteUsers: any = (ids: string[]) => async (
-  dispatch: Dispatch<IState>
-): Promise<Action> => {
-  try {
-    const result = await API.delete(ids);
-    return dispatch({
-      type: actions.DELETE_SUCCESS,
-      payload: {
-        ids,
-      },
-    });
   } catch (error) {
-    return dispatch({ type: actions.DELETE_FAILED, payload: { error } });
+    return dispatch(createErrorAction(error, actions.FETCH_USERS_FAILED));
   }
 };
 
@@ -69,7 +47,39 @@ export const createUser: any = (data: any) => async (
       },
     });
   } catch (error) {
-    return dispatch({ type: actions.CREATE_USER_FAILED, payload: { error } });
+    return dispatch(createErrorAction(error, actions.CREATE_USER_FAILED));
+  }
+};
+
+export const deleteUsers: any = (ids: string[]) => async (
+  dispatch: Dispatch<IState>
+): Promise<Action> => {
+  try {
+    const result = await API.delete(ids);
+    return dispatch({
+      type: actions.DELETE_USER_SUCCESS,
+      payload: {
+        ids: result,
+      },
+    });
+  } catch (error) {
+    return dispatch(createErrorAction(error, actions.DELETE_USER_FAILED));
+  }
+};
+
+export const send: any = (to: any) => async (
+  dispatch: Dispatch<IState>
+): Promise<Action> => {
+  try {
+    const result = await API.send(to);
+    return dispatch({
+      type: actions.SEND_SUCCESS,
+      payload: {
+        result,
+      },
+    });
+  } catch (error) {
+    return dispatch(createErrorAction(error, actions.SEND_FAILED));
   }
 };
 

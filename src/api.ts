@@ -31,18 +31,13 @@ const mockData = [
   },
 ];
 
-export const getData = (query: string) =>
+const getUsers = (query: string) =>
   axios.get(`${endpointBase}/users`).then(res => res.data);
 
-export const sendToUser = (id: any) =>
-  axios
-    .put(`${endpointBase}/users/${id}`, { status: true })
-    .then(res => ({ target: res.data.id }));
-
-export const createUser = (data: any) =>
+const createUser = (data: any) =>
   axios.post(`${endpointBase}/users`, data).then(res => res.data);
 
-export const deleteUsers = async (ids: any[]) => {
+const deleteUsers = async (ids: string[]) => {
   const result = await Promise.all(
     ids.map(id => axios.delete(`${endpointBase}/users/${id}`))
   );
@@ -52,9 +47,40 @@ export const deleteUsers = async (ids: any[]) => {
   return { ids: deletedIds };
 };
 
-export const API = {
-  fetch: getData,
-  send: sendToUser,
-  delete: deleteUsers,
+const sendToUser = (id: any) =>
+  axios
+    .put(`${endpointBase}/users/${id}`, { status: true })
+    .then(res => ({ target: res.data.id }));
+
+export const mockAPI = {
+  fetch: getUsers,
   create: createUser,
+  delete: deleteUsers,
+  send: sendToUser,
+};
+
+export const API = {
+  async fetch(query: string) {
+    await delay(250);
+
+    return mockData;
+  },
+
+  async create(data: any) {
+    await delay(100);
+
+    return data;
+  },
+
+  async delete(ids: string[]) {
+    await delay(100);
+
+    return { ids };
+  },
+
+  async send(id: string) {
+    await delay(100);
+
+    return { target: id };
+  },
 };

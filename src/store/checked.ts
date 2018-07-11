@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 
 import { removeItem } from '../lib';
-import { DELETE_SUCCESS, TOGGLE_SELECTED } from './action-constants';
+import { DELETE_USER_SUCCESS, TOGGLE_SELECTED } from './action-constants';
 
 export const reducer = (state: string[] = [], action: any) => {
   const { type, payload } = action;
@@ -14,7 +14,7 @@ export const reducer = (state: string[] = [], action: any) => {
       } else {
         return [...state, payload.id];
       }
-    case DELETE_SUCCESS:
+    case DELETE_USER_SUCCESS:
       return state.filter(id => !payload.ids.includes(id));
   }
   return state;
