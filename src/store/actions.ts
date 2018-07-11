@@ -58,9 +58,7 @@ export const deleteUsers: any = (ids: string[]) => async (
     const result = await API.delete(ids);
     return dispatch({
       type: actions.DELETE_USER_SUCCESS,
-      payload: {
-        ids: result,
-      },
+      payload: result,
     });
   } catch (error) {
     return dispatch(createErrorAction(error, actions.DELETE_USER_FAILED));
