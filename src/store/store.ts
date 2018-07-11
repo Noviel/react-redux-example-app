@@ -26,7 +26,7 @@ let middlewares = [thunk];
 
 if (process.env.NODE_ENV !== 'production') {
   // tslint:disable-next-line:no-var-requires
-  const logger = require('redux-logger');
+  const logger = require('redux-logger').default;
   middlewares = [...middlewares, logger];
 }
 
