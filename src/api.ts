@@ -52,14 +52,14 @@ const sendToUser = (id: any) =>
     .put(`${endpointBase}/users/${id}`, { status: true })
     .then(res => ({ target: res.data.id }));
 
-export const mockAPI = {
+export const API = {
   fetch: getUsers,
   create: createUser,
   delete: deleteUsers,
   send: sendToUser,
 };
 
-export const API = {
+export const mockAPI = {
   async fetch(query: string) {
     await delay(250);
 
