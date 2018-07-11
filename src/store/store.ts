@@ -1,5 +1,4 @@
 import { applyMiddleware, combineReducers, createStore } from 'redux';
-import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 
 import { reducer as checked } from './checked';
@@ -23,8 +22,15 @@ store.state = {
   checked: [1, 3, 4],
 }
 */
+let middlewares = [thunk];
+
+if (process.env.NODE_ENV !== 'production') {
+  // tslint:disable-next-line:no-var-requires
+  const logger = require('redux-logger');
+  middlewares = [...middlewares, logger];
+}
 
 export const store = createStore(
   combineReducers({ users, filter, checked }),
-  applyMiddleware(logger, thunk)
+  applyMiddleware(...middlewares)
 );
