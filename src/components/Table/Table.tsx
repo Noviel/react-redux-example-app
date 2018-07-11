@@ -5,12 +5,12 @@ import { Dispatch } from 'redux';
 
 import 'react-table/react-table.css';
 
-import { send, toggleSelected } from '../store/actions';
-import { checkedSelector } from '../store/checked';
-import { usersByIdSelector, visibleUsers } from '../store/users';
+import { send, toggleSelected } from '../../store/actions';
+import { checkedSelector } from '../../store/checked';
+import { usersByIdSelector, visibleUsers } from '../../store/users';
 
-import { Button } from './Button';
-import { Checkbox } from './Checkbox';
+import { Button } from '../UI/Button';
+import { Checkbox } from '../UI/Checkbox';
 
 export interface ITableProps {
   id?: string;
@@ -20,8 +20,6 @@ export interface ITableProps {
   send?: any;
   checked: string[];
 }
-
-
 
 export class UCTable extends React.Component<ITableProps> {
   public render() {

@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { Button } from './Button';
-import { Form, IFormProps } from './Form';
-import { Input } from './Input';
+import { Button } from '../UI/Button';
+import { Form, IFormProps } from '../UI/Form';
+import { Input } from '../UI/Input';
 
-import { createUser } from '../store/actions';
+import { createUser } from '../../store/actions';
 
 interface IAppInputProps {
   createUser?: any;

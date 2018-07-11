@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { Button } from './Button';
+import { Button } from '../UI/Button';
 
-import { setFilter } from '../store/actions';
-import { filterSelector } from '../store/filter';
+import { setFilter } from '../../store/actions';
+import { filterSelector } from '../../store/filter';
 
 import styles from './Filter.module.css';
 

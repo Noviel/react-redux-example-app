@@ -3,9 +3,9 @@ import * as React from 'react';
 import { hot } from 'react-hot-loader';
 import { Provider } from 'react-redux';
 
-import { AppInput } from './AppInput';
-import { ControlPanel } from './ControlPanel';
-import { Table } from './Table';
+import { ControlPanel } from '../ControlPanel/ControlPanel';
+import { AppInput } from '../CreateRecipientForm/CreateRecipientForm';
+import { Table } from '../Table/Table';
 
 import styles from './App.module.css';
 

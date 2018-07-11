@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { deleteUsers } from '../store/actions';
-import { checkedSelector } from '../store/checked';
-import { Button } from './Button';
+import { deleteUsers } from '../../store/actions';
+import { checkedSelector } from '../../store/checked';
+import { Button } from '../UI/Button';
 
 interface IDeleteButtonProps {
   dummy?: any;
