@@ -3,12 +3,11 @@ import * as React from 'react';
 import { hot } from 'react-hot-loader';
 import { Provider } from 'react-redux';
 
-import styles from './App.module.css';
-
 import { AppInput } from './AppInput';
-import { DeleteButton } from './DeleteButton';
-import { Filter } from './Filter';
+import { ControlPanel } from './ControlPanel';
 import { Table } from './Table';
+
+import styles from './App.module.css';
 
 export interface IAppProps {
   store: any;
@@ -26,8 +25,7 @@ export class App extends React.Component<IAppProps, IAppState> {
         <div className={styles.app}>
           <h1>Add recipient</h1>
           <AppInput />
-          <DeleteButton>DELTEE</DeleteButton>
-          <Filter />
+          <ControlPanel />
           <Table />
         </div>
       </Provider>
