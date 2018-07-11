@@ -2,8 +2,11 @@ import { createSelector } from 'reselect';
 
 import { removeItem } from '../lib';
 import { DELETE_USER_SUCCESS, TOGGLE_SELECTED } from './action-constants';
+import { IAppState } from './store';
 
-export const reducer = (state: string[] = [], action: any) => {
+export type CheckedState = string[];
+
+export const reducer = (state: CheckedState = [], action: any) => {
   const { type, payload } = action;
   switch (type) {
     case TOGGLE_SELECTED:
@@ -20,7 +23,7 @@ export const reducer = (state: string[] = [], action: any) => {
   return state;
 };
 
-export const checkedSelector = (state: any) => state.checked;
+export const checkedSelector = (state: IAppState) => state.checked;
 
 export const isCheckedSelector = (id: string) =>
   createSelector(checkedSelector, checked => checked.includes(id));

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { IUserData } from './store/users';
 
 const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
 
@@ -34,7 +35,7 @@ const mockData = [
 const getUsers = (query: string) =>
   axios.get(`${endpointBase}/users`).then(res => res.data);
 
-const createUser = (data: any) =>
+const createUser = (data: Partial<IUserData>) =>
   axios.post(`${endpointBase}/users`, data).then(res => res.data);
 
 const deleteUsers = async (ids: string[]) => {
@@ -47,7 +48,7 @@ const deleteUsers = async (ids: string[]) => {
   return { ids: deletedIds };
 };
 
-const sendToUser = (id: any) =>
+const sendToUser = (id: string) =>
   axios
     .put(`${endpointBase}/users/${id}`, { status: true })
     .then(res => ({ target: res.data.id }));
@@ -66,7 +67,7 @@ export const mockAPI = {
     return mockData;
   },
 
-  async create(data: any) {
+  async create(data: Partial<IUserData>) {
     await delay(100);
 
     return data;

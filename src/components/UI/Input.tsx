@@ -7,8 +7,8 @@ export interface IInputProps {
   name: string;
   label: string;
   value: string;
-  onChange: (a: any) => void;
-  style?: any;
+  onChange: (e: React.FormEvent<HTMLInputElement>) => void;
+  style?: object;
 }
 
 export const Input = ({

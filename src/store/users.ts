@@ -4,14 +4,31 @@ import * as actions from './action-constants';
 import { filterSelector } from './filter';
 
 import { arrayToObject, deleteKeys } from '../lib';
+import { IAppState } from './store';
 
-const initialState = {
+export interface IUserData {
+  id: string;
+  name: string;
+  email: string;
+  status: boolean;
+}
+
+export interface IUsersById {
+  [s: string]: IUserData;
+}
+
+export interface IUsersState {
+  list: string[];
+  byId: IUsersById;
+}
+
+const initialState: IUsersState = {
   list: [],
   byId: {},
 };
 
-export const usersByIdSelector = (state: any) => state.users.byId;
-export const usersListSelector = (state: any) => state.users.list;
+export const usersByIdSelector = (state: IAppState) => state.users.byId;
+export const usersListSelector = (state: IAppState) => state.users.list;
 
 export const visibleUsers = createSelector(
   usersByIdSelector,
@@ -19,10 +36,10 @@ export const visibleUsers = createSelector(
   filterSelector,
   (usersById, usersList, filter) => {
     if (filter === 'all') {
-      return usersList.map((id: number) => usersById[id]);
+      return usersList.map((id: string) => usersById[id]);
     }
 
-    return usersList.reduce((acc: any, curr: any) => {
+    return usersList.reduce((acc: IUserData[], curr: string) => {
       const user = usersById[curr];
       if (
         (filter === 'sent' && user.status) ||
@@ -35,7 +52,7 @@ export const visibleUsers = createSelector(
   }
 );
 
-export const reducer = (state: any = initialState, action: any) => {
+export const reducer = (state: IUsersState = initialState, action: any) => {
   const { type, payload } = action;
 
   switch (type) {
@@ -54,7 +71,7 @@ export const reducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         byId: arrayToObject(payload.users),
-        list: payload.users.map((u: any) => u.id),
+        list: payload.users.map((user: IUserData) => user.id),
       };
 
     case actions.CREATE_USER_SUCCESS:
@@ -76,7 +93,7 @@ export const reducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         byId: deleteKeys(state.byId, ids),
-        list: state.list.filter((e: any) => !ids.includes(e)),
+        list: state.list.filter((x: string) => !ids.includes(x)),
       };
 
     default:

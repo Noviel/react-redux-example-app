@@ -5,47 +5,40 @@ import { Button } from '../UI/Button';
 
 import { setFilter } from '../../store/actions';
 import { filterSelector } from '../../store/filter';
+import { IAppState } from '../../store/store';
 
 import styles from './Filter.module.css';
 
-export interface IFilterProps {
-  value: string;
-  set?: any;
-}
-
 interface IFilterButtonProps {
-  value: string;
-  onClick?: any;
   active: boolean;
+  value: string;
+  apply: (value: string) => void;
 }
 
 const FilterButton: React.SFC<IFilterButtonProps> = ({
-  value,
   active = false,
-  onClick,
+  value,
+  apply,
   children,
-}) => {
-  const activeStyle = {
-    border: '1px solid red',
-  };
+}) => (
+  <>
+    <Button
+      flat
+      className={active ? styles.active : ''}
+      onClick={e => apply(value)}
+    >
+      {children}
+      {active && <div className={styles.underline} />}
+    </Button>
+  </>
+);
 
-  const inactiveStyle = {};
+export interface IFilterProps {
+  value: string;
+  set: (value: string) => void;
+}
 
-  return (
-    <>
-      <Button
-        flat
-        className={active ? styles.active : ''}
-        onClick={e => onClick(value)}
-      >
-        {children}
-        {active && <div className={styles.underline} />}
-      </Button>
-    </>
-  );
-};
-
-export class UCFilter extends React.Component<IFilterProps, any> {
+export class BaseFilter extends React.Component<IFilterProps, {}> {
   public render() {
     const { value, set } = this.props;
 
@@ -57,13 +50,13 @@ export class UCFilter extends React.Component<IFilterProps, any> {
           width: '300px',
         }}
       >
-        <FilterButton active={value === 'all'} value="all" onClick={set}>
+        <FilterButton active={value === 'all'} value="all" apply={set}>
           Show all
         </FilterButton>
-        <FilterButton active={value === 'sent'} value="sent" onClick={set}>
+        <FilterButton active={value === 'sent'} value="sent" apply={set}>
           Show sent
         </FilterButton>
-        <FilterButton active={value === 'unsent'} value="unsent" onClick={set}>
+        <FilterButton active={value === 'unsent'} value="unsent" apply={set}>
           Show unsent
         </FilterButton>
       </div>
@@ -72,8 +65,8 @@ export class UCFilter extends React.Component<IFilterProps, any> {
 }
 
 export const Filter = connect(
-  state => ({
+  (state: IAppState) => ({
     value: filterSelector(state),
   }),
   { set: setFilter }
-)(UCFilter);
+)(BaseFilter as any);

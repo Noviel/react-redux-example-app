@@ -1,4 +1,8 @@
-export const reducer = (state: string = 'all', action: any) => {
+import { IAppState } from './store';
+
+export type FilterState = 'all' | 'sent' | 'unsent';
+
+export const reducer = (state: FilterState = 'all', action: any) => {
   switch (action.type) {
     case 'SET_FILTER':
       return action.payload.filter;
@@ -6,4 +10,4 @@ export const reducer = (state: string = 'all', action: any) => {
   return state;
 };
 
-export const filterSelector = (state: any) => state.filter;
+export const filterSelector = (state: IAppState) => state.filter;

@@ -7,8 +7,8 @@ export interface IButtonsProps {
   flat?: boolean;
   type?: string;
   onClick?: (e: React.MouseEvent<HTMLElement>) => void;
-  children?: any;
-  style?: any;
+  children?: React.ReactNode;
+  style?: object;
   className?: string;
 }
 

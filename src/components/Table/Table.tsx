@@ -1,34 +1,31 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import ReactTable from 'react-table';
-import { Dispatch } from 'redux';
 
 import 'react-table/react-table.css';
 
 import { send, toggleSelected } from '../../store/actions';
 import { checkedSelector } from '../../store/checked';
-import { usersByIdSelector, visibleUsers } from '../../store/users';
+import { IUserData, usersByIdSelector, visibleUsers } from '../../store/users';
 
+import { IAppState } from '../../store/store';
 import { Button } from '../UI/Button';
 import { Checkbox } from '../UI/Checkbox';
 
 export interface ITableProps {
-  id?: string;
-  users?: any;
-  shown?: any;
-  toggle?: any;
-  send?: any;
+  shown?: IUserData[];
+  toggle: (id: string) => void;
+  send: (id: string) => void;
   checked: string[];
 }
 
-export class UCTable extends React.Component<ITableProps> {
+export class BaseTable extends React.Component<ITableProps> {
   public render() {
-    const toggle = this.props.toggle!;
     const columns = [
       {
         Cell: (row: any) => (
           <Checkbox
-            onChange={e => toggle(row.original.id)}
+            onChange={e => this.props.toggle(row.original.id)}
             checked={this.props.checked.includes(row.original.id)}
           />
         ),
@@ -83,7 +80,7 @@ export class UCTable extends React.Component<ITableProps> {
   }
 }
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: IAppState) => ({
   users: usersByIdSelector(state),
   checked: checkedSelector(state),
   shown: visibleUsers(state),
@@ -97,4 +94,4 @@ const mapDispatchToProps = {
 export const Table = connect(
   mapStateToProps,
   mapDispatchToProps
-)(UCTable);
+)(BaseTable as any);

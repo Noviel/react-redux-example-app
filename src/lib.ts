@@ -15,7 +15,7 @@ export const arrayToObject = (arr: any[], idField = 'id') =>
     return acc;
   }, {});
 
-export const deleteKeys = (obj: any, keys: string[]) => {
+export const deleteKeys = (obj: { [k: string]: any }, keys: string[]) => {
   const result: any = {};
 
   for (const key in obj) {

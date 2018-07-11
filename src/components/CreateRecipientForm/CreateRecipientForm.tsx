@@ -6,18 +6,19 @@ import { Form, IFormProps } from '../UI/Form';
 import { Input } from '../UI/Input';
 
 import { createUser } from '../../store/actions';
+import { IUserData } from '../../store/users';
 
-interface IAppInputProps {
-  createUser?: any;
+interface ICreateRecipientFormProps {
+  createUser: (user: Partial<IUserData>) => void;
 }
-interface IAppInputState {
+interface ICreateRecipientFormState {
   name: string;
   email: string;
 }
 
-export class UCAppInput extends React.Component<
-  IAppInputProps,
-  IAppInputState
+export class BaseCreateRecipientForm extends React.Component<
+  ICreateRecipientFormProps,
+  ICreateRecipientFormState
 > {
   public state = {
     name: '',
@@ -75,7 +76,7 @@ export class UCAppInput extends React.Component<
   }
 }
 
-export const AppInput = connect(
+export const CreateRecipientForm = connect(
   state => state,
   { createUser }
-)(UCAppInput);
+)(BaseCreateRecipientForm);
