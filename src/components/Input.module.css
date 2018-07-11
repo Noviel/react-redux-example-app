@@ -1,18 +1,17 @@
-@import "../variables.css";
+@import "../styles/variables.css";
 
 .label {
   font: "Open Sans";
   font-size: 1.2em;
-  display:block;
-  position:relative;
   padding-left: 0px;
-
+  display: block;
   color: var(--text);
 }
 
 .input {
   height: 41px;
   width: 214px;
+  border: 0;
   border-radius: var(--corner-radius-small);
 
   background-color: var(--white);

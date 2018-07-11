@@ -18,7 +18,7 @@ store.dispatch(fetchUsers(''));
 //   console.log(store.getState());
 // });
 
-import './global.css';
+import './styles/global.css';
 
 const root = document.getElementById('app');
 

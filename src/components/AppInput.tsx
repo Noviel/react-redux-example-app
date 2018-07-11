@@ -45,21 +45,31 @@ export class UCAppInput extends React.Component<
           this.setState({ email: '', name: '' });
         }}
       >
-        <Input
-          value={this.state.email}
-          placeholder="example@mail.com"
-          name="email"
-          label="Email"
-          onChange={this.handleEmailChange}
-        />
-        <Input
-          value={this.state.name}
-          placeholder="Alexander Snov"
-          name="name"
-          label="Name"
-          onChange={this.handleNameChange}
-        />
-        <Button type="submit">Add email</Button>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'flex-start',
+            alignItems: 'flex-end',
+          }}
+        >
+          <Input
+            value={this.state.email}
+            placeholder="example@mail.com"
+            name="email"
+            label="Email"
+            onChange={this.handleEmailChange}
+            style={{ marginRight: '14px' }}
+          />
+          <Input
+            value={this.state.name}
+            placeholder="Alexander Snov"
+            name="name"
+            label="Name"
+            onChange={this.handleNameChange}
+            style={{ marginRight: '14px' }}
+          />
+          <Button type="submit">Add email</Button>
+        </div>
       </Form>
     );
   }

@@ -1,0 +1,12 @@
+@import "../styles/variables.css";
+
+.active {
+  color: var(--text);
+}
+
+.underline {
+  width: '80%';
+  margin: auto;
+
+  border-bottom: 2px solid var(--primary);
+}

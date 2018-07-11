@@ -1,5 +1,6 @@
-@import "../variables.css";
+@import "../styles/variables.css";
 
 .app {
-  border: 0;
+  width: 90%;
+  margin: auto;
 }

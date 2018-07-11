@@ -1,0 +1,30 @@
+@import "../styles/variables.css";
+
+.container {
+  display: block;
+  position: relative;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 14px;
+  user-select: none;
+}
+
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 18px;
+  width: 18px;
+  border-radius: var(--corner-radius-tiny);
+  background-color: var(--primary-light);
+}
+
+.container input:checked ~ .checkmark {
+  background-color: var(--primary);
+}

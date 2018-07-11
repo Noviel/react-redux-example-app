@@ -21,11 +21,9 @@ export interface ITableProps {
   checked: string[];
 }
 
-export interface ITableState {
-  data: any;
-}
+const TableHeader: React.SFC<any> = props => <div>HEADER</div>;
 
-export class UCTable extends React.Component<ITableProps, ITableState> {
+export class UCTable extends React.Component<ITableProps> {
   public render() {
     const toggle = this.props.toggle!;
     const columns = [
@@ -38,6 +36,7 @@ export class UCTable extends React.Component<ITableProps, ITableState> {
         ),
         Header: '',
         accessor: undefined,
+        width: 40,
       },
       {
         Header: 'Email',
@@ -55,7 +54,10 @@ export class UCTable extends React.Component<ITableProps, ITableState> {
       {
         Cell: (row: any) =>
           !row.original.status ? (
-            <Button onClick={e => this.props.send(row.original.id)}>
+            <Button
+              size="small"
+              onClick={e => this.props.send(row.original.id)}
+            >
               Send
             </Button>
           ) : (
@@ -71,6 +73,13 @@ export class UCTable extends React.Component<ITableProps, ITableState> {
         data={this.props.shown}
         columns={columns}
         showPagination={false}
+        sortable={false}
+        resizable={false}
+        style={{
+          outline: false,
+          border: false,
+        }}
+        PadRowComponent={() => <span />}
       />
     );
   }

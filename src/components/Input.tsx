@@ -8,6 +8,7 @@ export interface IInputProps {
   label: string;
   value: string;
   onChange: (a: any) => void;
+  style?: any;
 }
 
 export const Input = ({
@@ -16,8 +17,9 @@ export const Input = ({
   label,
   value,
   onChange,
+  style = {},
 }: IInputProps) => (
-  <>
+  <div style={style}>
     <label className={styles.label} htmlFor={name}>
       {label}
     </label>
@@ -28,5 +30,5 @@ export const Input = ({
       value={value}
       onChange={onChange}
     />
-  </>
+  </div>
 );

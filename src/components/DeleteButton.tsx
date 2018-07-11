@@ -12,7 +12,9 @@ interface IDeleteButtonProps {
 }
 
 export const UCDeleteButton: React.SFC<IDeleteButtonProps> = props => (
-  <Button onClick={e => props.deleteUsers(props.checked)}>DELETE</Button>
+  <Button flat onClick={e => props.deleteUsers(props.checked)}>
+    {props.children}
+  </Button>
 );
 
 export const DeleteButton = connect(

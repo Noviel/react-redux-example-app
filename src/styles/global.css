@@ -1,0 +1,45 @@
+@import "./variables.css";
+
+body, * {
+  font-size: 14px;
+  box-sizing: border-box;
+  font-family: "Open Sans", Times, serif;
+  background-color: var(--background);
+}
+
+h1 {
+  color: var(--text);
+  font-size: 22px;
+  font-family: "Open Sans";
+}
+
+/* Override react-table styles */
+.ReactTable, 
+.ReactTable .rt-tbody .rt-td, 
+.ReactTable .rt-tbody .rt-tr-group {
+  border: 0;
+}
+
+.rt-resizable-header-content {
+  background-color: var(--primary-light);
+  text-align: left;
+}
+
+.rt-resizer {
+  background-color: transparent;
+}
+
+.rt-thead .rt-tr .rt-th,
+.rt-thead .rt-td,
+.rt-th div {
+  background-color: var(--primary-light);
+  border: 0;
+}
+
+.rt-th div {
+  text-align: left;
+}
+
+.rt-tr .rt-td {
+  background-color: var(--white);
+}

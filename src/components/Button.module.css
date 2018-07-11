@@ -1,31 +1,57 @@
-@import "../variables.css";
-
+@import "../styles/variables.css";
 
 .button {
   box-sizing: border-box;
-  height: 40px;
-  width: 118px;
 
   color: var(--white);
   background-color: var(--primary);
 
+  cursor: pointer;
+
   outline: none;
   border: 0;
-  border-radius: var(--corner-radius-large);
-  box-shadow:
-    0px 1px 5px 0px rgba(0, 0, 0, 0.2), 
-    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 
-    0px 3px 1px -2px rgba(0, 0, 0, 0.12);
 
   -webkit-appearance: none;
 }
 
-.button:hover {
+/* .button:hover {
+  color: var(--primary);
+  background-color: var(--white);
+} */
+
+
+.large {
+  height: 40px;
+  width: 118px;
+}
+
+.small {
+  height: 20px;
+  width: 62px;
+}
+
+.flat {
+  box-shadow: 0;
+  background-color: transparent;
+  color: var(--text-light);
+
+  width: auto;
+}
+
+.regular {
+  border-radius: var(--corner-radius-large);
+  box-shadow:
+    0px 1px 5px 0px rgba(0, 0, 0, 0.2), 
+    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 
+    0px 3px 1px -2px rgba(14, 6, 6, 0.12);
+}
+
+.regular:hover {
   color: var(--primary);
   background-color: var(--white);
 }
 
-.button:focus {
+.regular:focus {
   border: 1px dashed white;
 }
 

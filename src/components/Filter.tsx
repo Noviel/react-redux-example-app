@@ -1,8 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { Button } from './Button';
+
 import { setFilter } from '../store/actions';
 import { filterSelector } from '../store/filter';
+
+import styles from './Filter.module.css';
 
 export interface IFilterProps {
   value: string;
@@ -22,19 +26,22 @@ const FilterButton: React.SFC<IFilterButtonProps> = ({
   children,
 }) => {
   const activeStyle = {
-    color: 'red',
+    border: '1px solid red',
   };
 
-  const inactiveStyle = {
-    color: 'blue',
-  };
+  const inactiveStyle = {};
+
   return (
-    <span
-      style={active ? activeStyle : inactiveStyle}
-      onClick={e => onClick(value)}
-    >
-      {children}
-    </span>
+    <>
+      <Button
+        flat
+        className={active ? styles.active : ''}
+        onClick={e => onClick(value)}
+      >
+        {children}
+        {active && <div className={styles.underline} />}
+      </Button>
+    </>
   );
 };
 
@@ -43,17 +50,23 @@ export class UCFilter extends React.Component<IFilterProps, any> {
     const { value, set } = this.props;
 
     return (
-      <>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          width: '300px',
+        }}
+      >
         <FilterButton active={value === 'all'} value="all" onClick={set}>
-          All
+          Show all
         </FilterButton>
         <FilterButton active={value === 'sent'} value="sent" onClick={set}>
-          Sent
+          Show sent
         </FilterButton>
         <FilterButton active={value === 'unsent'} value="unsent" onClick={set}>
-          Unsent
+          Show unsent
         </FilterButton>
-      </>
+      </div>
     );
   }
 }
