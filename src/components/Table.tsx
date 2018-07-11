@@ -21,7 +21,7 @@ export interface ITableProps {
   checked: string[];
 }
 
-const TableHeader: React.SFC<any> = props => <div>HEADER</div>;
+
 
 export class UCTable extends React.Component<ITableProps> {
   public render() {
