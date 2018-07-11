@@ -5,31 +5,9 @@ import { filterSelector } from './filter';
 
 import { arrayToObject, deleteKeys } from '../lib';
 
-/*
-store.state = {
-  users: {
-    list: {
-      1: { id: 1, name: '1' },
-      2: { id: 2, name: '2' },
-      3: { id: 3, name: '3' },
-      4: { id: 4, name: '4' },
-    },
-    meta: {
-      error: ''
-    }
-  },
-  filter: 'all',
-  checked: [1, 3, 4],
-}
-
-Filtered todo are derived from the state via selectors.
-
-*/
-
 const initialState = {
   list: [],
   byId: {},
-  lastAction: 'init',
 };
 
 export const usersByIdSelector = (state: any) => state.users.byId;
@@ -72,15 +50,11 @@ export const reducer = (state: any = initialState, action: any) => {
       );
       return { ...state, error: payload.error };
 
-    case actions.FETCH_USERS:
-      return { ...state, lastAction: 'fetching' };
-
     case actions.FETCH_USERS_SUCCESS:
       return {
         ...state,
         byId: arrayToObject(payload.users),
         list: payload.users.map((u: any) => u.id),
-        lastAction: 'fetching success',
       };
 
     case actions.CREATE_USER_SUCCESS:
