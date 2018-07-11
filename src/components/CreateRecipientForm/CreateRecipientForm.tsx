@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { Button } from '../UI/Button';
-import { Form, IFormProps } from '../UI/Form';
+import { Form } from '../UI/Form';
 import { Input } from '../UI/Input';
 
 import { createUser } from '../../store/actions';

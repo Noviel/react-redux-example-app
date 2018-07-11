@@ -2,7 +2,7 @@ import * as React from 'react';
 // tslint:disable-next-line:no-implicit-dependencies
 import { hot } from 'react-hot-loader';
 import { Provider } from 'react-redux';
-import { Dispatch, Store } from 'redux';
+import { Store } from 'redux';
 
 import { IAppState } from '../../store/store';
 import { ControlPanel } from '../ControlPanel/ControlPanel';

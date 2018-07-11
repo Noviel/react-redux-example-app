@@ -1,5 +1,4 @@
-import { Action, ActionCreator, AnyAction, Dispatch } from 'redux';
-import { ThunkAction } from 'redux-thunk';
+import { Action, Dispatch } from 'redux';
 
 import * as actions from './action-constants';
 
