@@ -2,6 +2,18 @@
 
 [Live demo](https://compassionate-lichterman-919e75.netlify.com/)
 
+## About
+
+Recipients data is fetched only once on the start up. Then UI will be optimistically updated, based on the assumptions about remote API.
+
+`Send` button - send `PUT` request to the remote endpoint with `status` changed to `true`.
+
+`Delete selected recipients` - send `DELETE` request to delete selected recipients.
+
+`Add email` - create new recipient with `false` `status` via POST request to the ENDPOINT.
+
+Filters - filter shown recipients by `status`. No external API is called, just Redux stuff.
+
 ## Clone and install
 
 ```sh
