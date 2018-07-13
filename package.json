@@ -4,6 +4,7 @@
   "description": "A sample project with React, Redux and stuff",
   "author": "Alexander Snov <snov.contact@gmail.com>",
   "license": "MIT",
+  "main": "src/index.tsx",
   "scripts": {
     "dev": "webpack-dev-server --port 4201 --hot --hot-only --inline --history-api-fallback=true",
     "dev:components": "cosmos",
